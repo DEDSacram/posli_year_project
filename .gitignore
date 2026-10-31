@@ -1,0 +1,12 @@
+.env
+*.env
+!.env.example
+# Android (lokální a generované)
+/android/local.properties
+/android/.gradle/
+/android/app/build/
+/android/build/
+/android/.idea/
+
+# Backend (build artefakty Mavenu)
+/backend/target/
