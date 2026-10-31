@@ -1,0 +1,89 @@
+services:
+  db:
+    image: paradedb/paradedb:latest
+    container_name: bazar-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-bazar}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bazar}
+      POSTGRES_DB: ${POSTGRES_DB:-bazar}
+    volumes:
+      - pgdata:/var/lib/postgresql
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-bazar} -d $${POSTGRES_DB:-bazar}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 20s
+    networks:
+      - bazar-net
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: bazar-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-bazar}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-bazar}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-bazar}
+      JWT_SECRET: ${JWT_SECRET:-dev-only-secret-key-min-32-bytes-long-0123456789}
+      TAX_ENCRYPTION_KEY: ${TAX_ENCRYPTION_KEY:-}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@bazar.cz}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/health | grep -q UP || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    networks:
+      - bazar-net
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8081}
+    container_name: bazar-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ | grep -q poslitodal || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    networks:
+      - bazar-net
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --config /etc/cloudflared/config.yml run
+    user: "1000:1000"
+    volumes:
+      - /home/sacram/.cloudflared/481d53d0-b476-46f3-8766-958bd883f61a.json:/etc/cloudflared/481d53d0-b476-46f3-8766-958bd883f61a.json:ro
+      - ./cloudflared.yml:/etc/cloudflared/config.yml:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - bazar-net
+    restart: unless-stopped
+
+networks:
+  bazar-net:
+    driver: bridge
+
+volumes:
+  pgdata:

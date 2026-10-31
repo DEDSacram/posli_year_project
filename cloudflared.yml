@@ -1,0 +1,9 @@
+tunnel: 481d53d0-b476-46f3-8766-958bd883f61a
+credentials-file: /etc/cloudflared/481d53d0-b476-46f3-8766-958bd883f61a.json
+
+ingress:
+  - hostname: poslitodal.ondrej-skutil.eu
+    service: http://frontend:80
+  - hostname: poslitodal-api.ondrej-skutil.eu
+    service: http://backend:8080
+  - service: http_status:404
