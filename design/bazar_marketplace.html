@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>poslitodal BAZAR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f8f3;
+        }
+        /* Custom line clamp for descriptions */
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-800">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer">
+                <div class="text-[#1a4480]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                        <rect x="2" y="7" width="20" height="5"></rect>
+                        <line x1="12" y1="22" x2="12" y2="7"></line>
+                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                    </svg>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="font-bold text-[#1a4480] text-xl tracking-tight">poslitodal</span>
+                    <span class="font-bold text-[#a82222] text-xs tracking-wider uppercase">BAZAR</span>
+                </div>
+            </div>
+
+            <!-- Center Navigation -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-700">
+                <a href="#" class="flex items-center gap-1 hover:text-[#1a4480]">
+                    Kategorie
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <a href="#" class="hover:text-[#1a4480]">Prodat</a>
+                <a href="#" class="hover:text-[#1a4480]">Můj účet</a>
+            </nav>
+
+            <!-- Search Bar -->
+            <div class="relative w-full md:w-auto md:min-w-[250px]">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+                <input type="text" placeholder="Search..." class="w-full pl-9 pr-4 py-1.5 bg-white border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[#1a4480] focus:border-[#1a4480] transition-colors">
+            </div>
+            
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+
+            <!-- Product 1 -->
+            <div class="flex flex-col gap-3">
+                <!-- Top Section -->
+                <div class="flex gap-4 h-[220px]">
+                    <div class="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x400/e2e8f0/475569?text=Leather+Bag" alt="Vintage hnědá kožená brašna" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[60%] flex flex-col">
+                        <h3 class="text-[17px] font-bold leading-snug">Vintage hnědá kožená brašna</h3>
+                        <div class="text-[13px] text-gray-700 mt-1">
+                            <p>Stav: Velmi dobrý</p>
+                            <p>Značka: Neznámá</p>
+                            <p>Lokalita: Praha 5</p>
+                        </div>
+                        <p class="text-[22px] font-bold mt-2">3 500 Kč</p>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <button class="w-full bg-[#a82222] hover:bg-[#8b1c1c] text-white rounded py-1.5 font-semibold text-sm transition-colors shadow-sm">Koupit nyní</button>
+                            <button class="w-full bg-[#b5b5b5] hover:bg-[#a3a3a3] text-gray-900 rounded py-1.5 font-medium text-sm transition-colors shadow-sm">Přidat do oblíbených</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bottom Section -->
+                <div class="flex gap-4 items-start">
+                    <div class="w-[40%] grid grid-cols-3 gap-1 shrink-0">
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=1" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=2" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=3" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="w-[60%]">
+                        <p class="text-[13px] font-medium text-gray-800">Prodejce: Martin K. <span class="text-green-700 ml-0.5">(★★★★☆)</span></p>
+                        <p class="text-[12px] text-gray-600 mt-1 line-clamp-3 leading-relaxed">Pěkná vintage brašna s patina, pěkná vintage patina, a destienné ich brašia...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="flex flex-col gap-3">
+                <div class="flex gap-4 h-[220px]">
+                    <div class="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x400/e2e8f0/475569?text=Polaroid" alt="Vintage Polaroid SX-70" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[60%] flex flex-col">
+                        <h3 class="text-[17px] font-bold leading-snug">Vintage Polaroid SX-70</h3>
+                        <div class="text-[13px] text-gray-700 mt-1">
+                            <p>Stav: Velmi dobrý</p>
+                            <p>Značka: Neznámá</p>
+                            <p>Lokalita: Praha 5</p>
+                        </div>
+                        <p class="text-[22px] font-bold mt-2">2 100 Kč</p>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <button class="w-full bg-[#a82222] hover:bg-[#8b1c1c] text-white rounded py-1.5 font-semibold text-sm transition-colors shadow-sm">Koupit nyní</button>
+                            <button class="w-full bg-[#b5b5b5] hover:bg-[#a3a3a3] text-gray-900 rounded py-1.5 font-medium text-sm transition-colors shadow-sm">Přidat do oblíbených</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-[40%] grid grid-cols-3 gap-1 shrink-0">
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=1" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=2" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=3" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="w-[60%]">
+                        <p class="text-[13px] font-medium text-gray-800">Ales V. <span class="text-green-700 ml-0.5">(★★★★☆)</span></p>
+                        <p class="text-[12px] text-gray-600 mt-1 line-clamp-3 leading-relaxed">Vintage polaroid SX-70, working photos, storlo d-lao photo...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="flex flex-col gap-3">
+                <div class="flex gap-4 h-[220px]">
+                    <div class="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x400/e2e8f0/475569?text=Trek+Marlin" alt="MTB Trek Marlin 5, r.v. 2021" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[60%] flex flex-col">
+                        <h3 class="text-[17px] font-bold leading-snug">MTB Trek Marlin 5, r.v. 2021</h3>
+                        <div class="text-[13px] text-gray-700 mt-1">
+                            <p>Stav: Velmi dobrý</p>
+                            <p>Značka: Neznámá</p>
+                            <p>Lokalita: Praha 5</p>
+                        </div>
+                        <p class="text-[22px] font-bold mt-2">14 500 Kč</p>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <button class="w-full bg-[#1a4480] hover:bg-[#133261] text-white rounded py-1.5 font-semibold text-sm transition-colors shadow-sm">Zobrazit více</button>
+                            <button class="w-full bg-[#b5b5b5] hover:bg-[#a3a3a3] text-gray-900 rounded py-1.5 font-medium text-sm transition-colors shadow-sm">Přidat do oblíbených</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-[40%] grid grid-cols-3 gap-1 shrink-0">
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=1" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=2" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=3" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="w-[60%]">
+                        <p class="text-[13px] font-medium text-gray-800">Hana K. <span class="text-green-700 ml-0.5">(★★★★☆)</span></p>
+                        <p class="text-[12px] text-gray-600 mt-1 line-clamp-3 leading-relaxed">Úklid Trek Marlin 5, r.v. 2021, derailit na nonictmnes, derallouu ecstadilla...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="flex flex-col gap-3">
+                <div class="flex gap-4 h-[220px]">
+                    <div class="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x400/e2e8f0/475569?text=Vinyl+Records" alt="Sada 10-ti klasických LP" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[60%] flex flex-col">
+                        <h3 class="text-[17px] font-bold leading-snug">Sada 10-ti klasických LP (Queen, Pink Floyd, ...)</h3>
+                        <div class="text-[13px] text-gray-700 mt-1">
+                            <p>Stav: Velmi dobrý</p>
+                            <p>Značka: Neznámá</p>
+                            <p>Lokalita: Praha 5</p>
+                        </div>
+                        <p class="text-[22px] font-bold mt-2">1 200 Kč</p>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <button class="w-full bg-[#1a4480] hover:bg-[#133261] text-white rounded py-1.5 font-semibold text-sm transition-colors shadow-sm">Přidat do košíku</button>
+                            <button class="w-full bg-[#b5b5b5] hover:bg-[#a3a3a3] text-gray-900 rounded py-1.5 font-medium text-sm transition-colors shadow-sm">Přidat do oblíbených</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-[40%] grid grid-cols-3 gap-1 shrink-0">
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=1" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=2" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=3" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="w-[60%]">
+                        <p class="text-[13px] font-medium text-gray-800">Petr J. <span class="text-green-700 ml-0.5">(★★★☆☆)</span></p>
+                        <p class="text-[12px] text-gray-600 mt-1 line-clamp-3 leading-relaxed">Sada 10-ti klasických LP (Queen, Pink Floyd, ...)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="flex flex-col gap-3">
+                <div class="flex gap-4 h-[220px]">
+                    <div class="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x400/e2e8f0/475569?text=PS4+Pro" alt="Sony PlayStation 4 Pro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[60%] flex flex-col">
+                        <h3 class="text-[17px] font-bold leading-snug">Sony PlayStation 4 Pro, 2 ovladače + 5 her</h3>
+                        <div class="text-[13px] text-gray-700 mt-1">
+                            <p>Stav: Velmi dobrý</p>
+                            <p>Značka: Neznámá</p>
+                            <p>Lokalita: Praha 5</p>
+                        </div>
+                        <p class="text-[22px] font-bold mt-2">5 800 Kč</p>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <button class="w-full bg-[#a82222] hover:bg-[#8b1c1c] text-white rounded py-1.5 font-semibold text-sm transition-colors shadow-sm">Kontaktovat prodejce</button>
+                            <button class="w-full bg-[#b5b5b5] hover:bg-[#a3a3a3] text-gray-900 rounded py-1.5 font-medium text-sm transition-colors shadow-sm">Přidat do oblíbených</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-[40%] grid grid-cols-3 gap-1 shrink-0">
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=1" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=2" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=3" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="w-[60%]">
+                        <p class="text-[13px] font-medium text-gray-800">Dominik S. <span class="text-green-700 ml-0.5">(★★★★☆)</span></p>
+                        <p class="text-[12px] text-gray-600 mt-1 line-clamp-3 leading-relaxed">Sony PlayStation 4 Pro, 2 ovladače + 5 her</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="flex flex-col gap-3">
+                <div class="flex gap-4 h-[220px]">
+                    <div class="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0">
+                        <img src="https://placehold.co/400x400/e2e8f0/475569?text=Sayl+Chair" alt="Herman Miller Sayl - šedá" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-[60%] flex flex-col">
+                        <h3 class="text-[17px] font-bold leading-snug">Herman Miller Sayl - šedá</h3>
+                        <div class="text-[13px] text-gray-700 mt-1">
+                            <p>Stav: Velmi dobrý</p>
+                            <p>Značka: Neznámá</p>
+                            <p>Lokalita: Praha 5</p>
+                        </div>
+                        <p class="text-[22px] font-bold mt-2">9 900 Kč</p>
+                        <div class="mt-auto flex flex-col gap-1.5">
+                            <button class="w-full bg-[#1a4480] hover:bg-[#133261] text-white rounded py-1.5 font-semibold text-sm transition-colors shadow-sm">Zobrazit více</button>
+                            <button class="w-full bg-[#b5b5b5] hover:bg-[#a3a3a3] text-gray-900 rounded py-1.5 font-medium text-sm transition-colors shadow-sm">Přidat do oblíbených</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <div class="w-[40%] grid grid-cols-3 gap-1 shrink-0">
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=1" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=2" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300"><img src="https://placehold.co/100x100/e2e8f0/475569?text=3" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="w-[60%]">
+                        <p class="text-[13px] font-medium text-gray-800">Eva M. <span class="text-green-700 ml-0.5">(★★★★★)</span></p>
+                        <p class="text-[12px] text-gray-600 mt-1 line-clamp-3 leading-relaxed">Herman Miller Sayl - šedá, pěkná patina, a destienné ich brašia...</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-[#e5e7eb] py-6 mt-8">
+        <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Footer Logo -->
+            <div class="flex items-center gap-2 text-[#1a4480]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                    <rect x="2" y="7" width="20" height="5"></rect>
+                    <line x1="12" y1="22" x2="12" y2="7"></line>
+                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                </svg>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-600 font-medium">
+                <a href="#" class="hover:text-gray-900 transition-colors">Kategorie</a>
+                <a href="#" class="hover:text-gray-900 transition-colors">Prodat</a>
+                <a href="#" class="hover:text-gray-900 transition-colors">Můj účet</a>
+                <a href="#" class="hover:text-gray-900 transition-colors">Lokality</a>
+                <a href="#" class="hover:text-gray-900 transition-colors">Sostar</a>
+            </div>
+
+            <!-- Footer Social -->
+            <div class="flex gap-4 text-gray-500">
+                <a href="#" class="hover:text-[#1da1f2] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#" class="hover:text-[#e1306c] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" class="hover:text-[#ff0000] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
