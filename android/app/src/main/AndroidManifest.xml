@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:label="PosliToDal"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.PosliToDal"
+        android:usesCleartextTraffic="true"
+        android:allowBackup="false">
+
+        <activity android:name=".ui.AuthActivity" android:exported="false" />
+        <activity android:name=".ui.MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DetailActivity" android:exported="false" />
+        <activity android:name=".ui.EditActivity" android:exported="false" />
+        <activity android:name=".ui.ChatActivity" android:exported="false" />
+        <activity android:name=".ui.ProfileActivity" android:exported="false" />
+        <activity android:name=".ui.AccountActivity" android:exported="false" />
+        <activity android:name=".ui.DealsActivity" android:exported="false" />
+        <activity android:name=".ui.NotificationsActivity" android:exported="false" />
+        <activity android:name=".ui.AdminActivity" android:exported="false" />
+    </application>
+</manifest>

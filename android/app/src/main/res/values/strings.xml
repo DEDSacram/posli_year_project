@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PosliToDal</string>
+    <string name="tab_home">Domů</string>
+    <string name="tab_search">Hledat</string>
+    <string name="tab_sell">Prodat</string>
+    <string name="tab_fav">Oblíbené</string>
+    <string name="tab_more">Více</string>
+    <string name="login">Přihlásit</string>
+    <string name="register">Registrovat</string>
+    <string name="email">E-mail</string>
+    <string name="password">Heslo</string>
+    <string name="display_name">Přezdívka</string>
+    <string name="i_am_trader">Jsem obchodník (IČO)</string>
+    <string name="loading">Načítám…</string>
+    <string name="no_results">Nic jsme nenašli.</string>
+    <string name="search_hint">Co hledáte? (stačí část slova)</string>
+    <string name="search_btn">Hledat</string>
+    <string name="zip_hint">PSČ (např. 110 00)</string>
+    <string name="radius_hint">Okruh km</string>
+    <string name="buy_now">Koupit nyní</string>
+    <string name="interested">Mám zájem — napsat prodejci</string>
+    <string name="add_fav">Přidat do oblíbených</string>
+    <string name="in_fav">V oblíbených</string>
+    <string name="write_seller">Napsat prodejci</string>
+    <string name="offer_hint">Vaše nabídka (Kč)</string>
+    <string name="offer_btn">Nabídnout cenu</string>
+    <string name="publish">Publikovat</string>
+    <string name="title_hint">Název</string>
+    <string name="desc_hint">Popis</string>
+    <string name="price_hint">Cena (Kč)</string>
+    <string name="city_hint">Město / lokalita</string>
+    <string name="send">Odeslat</string>
+    <string name="message_hint">Napište zprávu…</string>
+    <string name="logout">Odhlásit</string>
+    <string name="account">Můj účet</string>
+    <string name="admin">Administrace</string>
+    <string name="server_url">Adresa serveru</string>
+    <string name="save">Uložit</string>
+    <string name="delete_account">Smazat účet</string>
+    <string name="report_hint">Důvod hlášení…</string>
+    <string name="report_btn">Nahlásit</string>
+    <string name="edit_listing">Upravit inzerát</string>
+    <string name="delete_listing">Smazat inzerát</string>
+    <string name="reviews_title">Recenze prodejce</string>
+    <string name="no_reviews">Zatím žádné recenze.</string>
+    <string name="queue_title">Moderační fronta</string>
+    <string name="keep">Ponechat</string>
+    <string name="remove">Odstranit</string>
+    <string name="dac7_title">DAC7 export</string>
+    <string name="download">Stáhnout</string>
+    <string name="empty_queue">Fronta je prázdná.</string>
+    <string name="login_required">Nejdřív se přihlaste.</string>
+    <string name="chats">Konverzace</string>
+    <string name="seller_info">Daňový profil prodejce</string>
+    <string name="dac7_status">DAC7 stav</string>
+    <string name="add_photo">Přidat fotku</string>
+
+    <!-- Přehled obchodů -->
+    <string name="deals">Moje obchody</string>
+    <string name="all">Vše</string>
+    <string name="buys">Nákupy</string>
+    <string name="sells">Prodeje</string>
+    <string name="buy">Nákup</string>
+    <string name="sell">Prodej</string>
+    <string name="no_deals">Zatím tu žádné obchody. Rezervujte inzerát tlačítkem „Koupit nyní“.</string>
+    <string name="listing_fallback">inzerát #%1$d</string>
+    <string name="confirm_deal">Potvrdit předání</string>
+    <string name="cancel_reservation">Zrušit rezervaci</string>
+    <string name="review_seller">Ohnotit prodejce</string>
+    <string name="review_hint">Jaký byl obchod?</string>
+    <string name="stars_hint">Hodnocení 1–5</string>
+    <string name="stars_invalid">Zadejte hodnocení od 1 do 5.</string>
+    <string name="review_text_required">Napište text recenze.</string>
+    <string name="review_sent">Recenze odeslána.</string>
+    <string name="summary_sales">Dokončených prodejů:</string>
+    <string name="turnover">obrat</string>
+    <string name="earned_rating">Získané hodnocení:</string>
+    <string name="pending_sales">Čeká na dokončení:</string>
+    <string name="st_reserved">Rezervováno</string>
+    <string name="st_completed">Dokončeno</string>
+    <string name="st_cancelled">Zrušeno</string>
+    <string name="st_withdrawn">Odstoupeno od smlouvy</string>
+    <string name="deal_done">Obchod dokončen.</string>
+    <string name="reservation_cancelled">Rezervace zrušena.</string>
+
+    <!-- Právo spotřebitele na odstoupení (§ 1829 OZ) -->
+    <string name="withdraw">Odstoupit od smlouvy</string>
+    <string name="confirm_withdrawal">Potvrdit odstoupení</string>
+    <string name="withdrawal_reason_hint">Důvod (volitelné)</string>
+    <string name="withdrawal_not_applies">Právo odstoupení se zde neuplatní.</string>
+    <string name="withdrawn_done">Odstoupení zaznamenáno.</string>
+
+    <!-- Upozornění na zlevnění -->
+    <string name="notifications">Upozornění</string>
+    <string name="notifications_count">Nepřečtená: %1$d</string>
+    <string name="no_notifications">Zatím žádná upozornění. Když prodejce sníží cenu uloženého inzerátu, objeví se to tady.</string>
+    <string name="mark_all_read">Přečíst vše</string>
+    <string name="marked_read">Označeno jako přečtené: %1$d</string>
+
+    <!-- Námitky proti hodnocení -->
+    <string name="reply">Odpovědět</string>
+    <string name="reply_hint">Vaše odpověď (jednou)</string>
+    <string name="dispute">Ohradit se proti hodnocení</string>
+    <string name="dispute_hint">Proč je hodnocení nespravedlivé? (min. 10 znaků)</string>
+    <string name="dispute_explained">Námitku posoudí administrátor. Po jejím potvrzení se recenze odstraní.</string>
+    <string name="dispute_too_short">Důvod námitky musí mít aspoň 10 znaků.</string>
+    <string name="dispute_sent">Námitka odeslána. Administrátor ji posoudí.</string>
+
+    <!-- Administrace: rozšířené sekce -->
+    <string name="disputes_title">Námitky na hodnocení</string>
+    <string name="verifications_title">Ověření obchodníků</string>
+    <string name="audit_title">Audit log</string>
+    <string name="users_title">Uživatelé</string>
+    <string name="dac7_summary_title">Souhrn DAC7</string>
+    <string name="uphold">Potvrdit námitku</string>
+    <string name="reject">Zamítnout</string>
+    <string name="approve_verification">Potvrdit doklad</string>
+    <string name="reject_verification">Odmítnout</string>
+    <string name="decision_note">Poznámka k rozhodnutí (volitelné)</string>
+    <string name="search_users_hint">Hledat podle e-mailu nebo jména…</string>
+    <string name="block_user">Blokovat</string>
+    <string name="unblock_user">Odblokovat</string>
+    <string name="block_reason">Důvod blokace:</string>
+    <string name="cannot_block_admin">Administrátora nelze zablokovat.</string>
+    <string name="filter_action_hint">Filtrovat audit podle akce…</string>
+    <string name="download_summary">Souhrn prodejců</string>
+    <string name="download_detail">Detail prodejů</string>
+    <string name="no_open_disputes">Žádné otevřené námitky.</string>
+    <string name="no_pending_verifications">Žádný obchodník nečeká na posouzení.</string>
+
+    <!-- Detail inzerátu -->
+    <string name="no_photos">(bez fotek)</string>
+    <string name="seller_label">Prodejce: %1$s</string>
+    <string name="offer_required">Zadejte nabízenou cenu v Kč.</string>
+    <string name="msg_interest">Dobrý den, mám o vaši nabídku zájem. Je ještě dostupná?</string>
+    <string name="msg_reserve">✅ Rezervuji „%1$s“ za %2$s (rezervace #%3$d). Domluvme si předání.</string>
+    <string name="msg_offer">💰 Nabízím %1$s Kč za „%2$s“. Platí?</string>
+    <string name="report_reason_required">Napište důvod hlášení.</string>
+    <string name="report_sent">Hlášení odesláno. Děkujeme.</string>
+    <string name="confirm_delete_listing">Opravdu smazat inzerát?</string>
+
+    <!-- Účet -->
+    <string name="verification_title">Ověření obchodníka (DSA)</string>
+    <string name="upload_document">Nahrát doklad</string>
+    <string name="verification_pending">Doklad čeká na posouzení administrátorem.</string>
+    <string name="verification_verified">Administrátor doklad potvrdil.</string>
+    <string name="verification_rejected">Administrátor doklad odmítl — nahrajte ho znovu.</string>
+    <string name="profile_saved">Profil uložen.</string>
+    <string name="doc_too_large">Soubor je větší než 5 MB.</string>
+    <string name="document_uploaded">Doklad nahrán a čeká na posouzení administrátorem.</string>
+    <string name="export_data">Export dat</string>
+    <string name="confirm_delete_account">Opravdu smazat účet? Daňový profil zůstává (retence pro DAC7).</string>
+    <string name="saved">Uloženo.</string>
+    <string name="no_rating_yet">Zatím bez hodnocení.</string>
+    <string name="conversation_placeholder">inzerát #%1$d · konverzace #%2$d</string>
+    <string name="conversation_title">Konverzace #%1$d</string>
+    <string name="pick_photo">Vyberte fotku</string>
+    <string name="photos_count">Fotky: %1$d / %2$d</string>
+    <string name="published">Publikováno.</string>
+    <string name="photo_read_failed">Čtení fotky selhalo.</string>
+    <string name="photo_too_large">Fotka je větší než 5 MB.</string>
+</resources>
