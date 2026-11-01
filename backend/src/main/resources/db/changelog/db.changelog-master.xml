@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <changeSet id="V1__init" author="bazar">
+    <sqlFile path="db/changelog/V1__init.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V2__dac7" author="bazar">
+    <sqlFile path="db/changelog/V2__dac7.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V3__favorites" author="bazar">
+    <sqlFile path="db/changelog/V3__favorites.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V4__favorite_price" author="bazar">
+    <sqlFile path="db/changelog/V4__favorite_price.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V5__reserve_idempotency" author="bazar">
+    <sqlFile path="db/changelog/V5__reserve_idempotency.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V6__notifications" author="bazar">
+    <sqlFile path="db/changelog/V6__notifications.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V7__review_disputes" author="bazar">
+    <sqlFile path="db/changelog/V7__review_disputes.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V8__trader_verification" author="bazar">
+    <sqlFile path="db/changelog/V8__trader_verification.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V9__withdrawal" author="bazar">
+    <sqlFile path="db/changelog/V9__withdrawal.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+  <changeSet id="V10__admin_governance" author="bazar">
+    <sqlFile path="db/changelog/V10__admin_governance.sql" relativeToChangelogFile="false" splitStatements="true" stripComments="true"/>
+  </changeSet>
+</databaseChangeLog>
