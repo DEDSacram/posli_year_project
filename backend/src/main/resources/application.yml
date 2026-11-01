@@ -1,0 +1,58 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/bazar}
+    username: ${SPRING_DATASOURCE_USERNAME:bazar}
+    password: ${SPRING_DATASOURCE_PASSWORD:bazar}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 10000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+app:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-key-min-32-bytes-long-0123456789}
+    access-minutes: 15
+    refresh-days: 30
+  tax-key: ${TAX_ENCRYPTION_KEY:}
+  admin-email: ${ADMIN_EMAIL:admin@bazar.cz}
+  cors-origins: ${CORS_ORIGINS:http://localhost:3000}
+  # Limity na zapisove endpointy (ochrana proti spamu); v testech se vypnou.
+  rate-limit:
+    enabled: ${RATE_LIMIT_ENABLED:true}
+    login: ${RATE_LIMIT_LOGIN:10}
+    register: ${RATE_LIMIT_REGISTER:5}
+    chat: ${RATE_LIMIT_CHAT:30}
+    report: ${RATE_LIMIT_REPORT:10}
+    reservation: ${RATE_LIMIT_RESERVATION:20}
+    window-ms: ${RATE_LIMIT_WINDOW_MS:60000}
+logging:
+  level:
+    cz.bazar: INFO
