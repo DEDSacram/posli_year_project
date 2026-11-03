@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "useDefineForClassFields": true,
+
+    /* Kontrola typů je součástí `npm run build` — chyba typu zastaví build. */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vite/client"]
+  },
+  "include": ["src"]
+}
