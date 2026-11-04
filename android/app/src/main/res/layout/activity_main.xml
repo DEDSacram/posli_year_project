@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/brandbar" android:orientation="horizontal"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@android:color/white" android:gravity="center_vertical"
+        android:paddingStart="12dp" android:paddingEnd="12dp"
+        android:paddingTop="6dp" android:paddingBottom="6dp">
+        <ImageView android:layout_width="wrap_content" android:layout_height="36dp"
+            android:src="@drawable/logo_small" android:adjustViewBounds="true"
+            android:contentDescription="poslitodal" />
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:paddingStart="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="poslitodal" android:textStyle="bold" android:textSize="19sp"
+                android:textColor="@color/navy" android:lineSpacingExtra="-3dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="BAZAR" android:textStyle="bold" android:textSize="11sp"
+                android:textColor="@color/brand" android:letterSpacing="0.15" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:background="@android:color/white"
+        app:menu="@menu/bottom_nav" xmlns:app="http://schemas.android.com/apk/res-auto" />
+</LinearLayout>
