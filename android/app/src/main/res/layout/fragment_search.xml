@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="12dp">
+
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText android:id="@+id/q" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:hint="@string/search_hint"
+            android:inputType="text" android:imeOptions="actionSearch" />
+        <Button android:id="@+id/go" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="@string/search_btn" />
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="4dp">
+        <Spinner android:id="@+id/category" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Spinner android:id="@+id/sort" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="4dp">
+        <EditText android:id="@+id/zip" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:hint="@string/zip_hint"
+            android:inputType="number" />
+        <EditText android:id="@+id/radius" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:hint="@string/radius_hint"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+    <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <ListView android:id="@+id/list" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:dividerHeight="8dp"
+        android:layout_marginTop="4dp" />
+
+    <TextView android:id="@+id/empty" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/no_results"
+        android:gravity="center" android:visibility="gone" android:padding="24dp" />
+</LinearLayout>
