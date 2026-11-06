@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="16dp">
+
+        <HorizontalScrollView android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout android:id="@+id/gallery" android:orientation="horizontal"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </HorizontalScrollView>
+
+        <TextView android:id="@+id/title" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="22sp"
+            android:textStyle="bold" android:layout_marginTop="8dp" />
+        <TextView android:id="@+id/price" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="24sp"
+            android:textStyle="bold" android:textColor="@color/navydeep" />
+        <TextView android:id="@+id/meta" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="14sp" />
+        <TextView android:id="@+id/seller" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="15sp"
+            android:layout_marginTop="8dp" />
+        <TextView android:id="@+id/desc" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp" />
+
+        <!-- Spotřebitelská práva: 14denní odstoupení u obchodníka (§ 1829 OZ). -->
+        <TextView android:id="@+id/rights" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="12sp"
+            android:padding="8dp" android:layout_marginTop="8dp"
+            android:background="@android:color/white" />
+
+        <Button android:id="@+id/btn_buy" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/buy_now"
+            app:backgroundTint="@color/brand"
+            android:layout_marginTop="12dp" />
+        <Button android:id="@+id/btn_interest" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/interested" />
+        <Button android:id="@+id/btn_fav" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/add_fav" />
+        <Button android:id="@+id/btn_contact" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/write_seller" />
+        <LinearLayout android:id="@+id/btn_offer_row" android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText android:id="@+id/offer" android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:hint="@string/offer_hint"
+                android:inputType="number" />
+            <Button android:id="@+id/btn_offer" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="@string/offer_btn" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/owner_box" android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:visibility="gone">
+            <Button android:id="@+id/btn_edit" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/edit_listing" />
+            <Button android:id="@+id/btn_delete" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/delete_listing" />
+        </LinearLayout>
+
+        <TextView android:text="@string/reviews_title" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textStyle="bold"
+            android:textSize="17sp" android:layout_marginTop="12dp" />
+        <LinearLayout android:id="@+id/reviews" android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp">
+            <EditText android:id="@+id/report" android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:hint="@string/report_hint" />
+            <Button android:id="@+id/btn_report" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="@string/report_btn" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
