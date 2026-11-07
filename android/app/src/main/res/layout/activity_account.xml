@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="16dp">
+        <TextView android:id="@+id/dac7" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="15sp"
+            android:layout_marginBottom="8dp" />
+        <TextView android:text="@string/seller_info" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textStyle="bold" android:textSize="17sp" />
+        <Spinner android:id="@+id/seller_type" android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText android:id="@+id/full_name" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Jméno a příjmení" />
+        <EditText android:id="@+id/dob" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Datum narození (RRRR-MM-DD)" />
+        <EditText android:id="@+id/street" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Ulice a číslo" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText android:id="@+id/city" android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:hint="Město" />
+            <EditText android:id="@+id/zip" android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:hint="PSČ" android:inputType="number" />
+        </LinearLayout>
+        <EditText android:id="@+id/country" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Země" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText android:id="@+id/tax_id" android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:hint="DIČ" />
+            <EditText android:id="@+id/ico" android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:hint="IČO" android:inputType="number" />
+        </LinearLayout>
+        <EditText android:id="@+id/iban" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="IBAN" android:inputType="textCapCharacters" />
+        <CheckBox android:id="@+id/self_cert" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Čestné prohlášení (obchodník)" />
+        <Button android:id="@+id/save_profile" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/save" />
+
+        <!-- Ověření obchodníka: doklad posoudí administrátor (DSA). -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/verification_title" android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+        <TextView android:id="@+id/verification" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:padding="8dp" android:background="@android:color/white" />
+        <Button android:id="@+id/upload_doc" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/upload_document"
+            android:layout_marginTop="4dp" />
+
+        <Button android:id="@+id/btn_export" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/export_data"
+            android:layout_marginTop="16dp" />
+        <Button android:id="@+id/btn_delete" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/delete_account" />
+    </LinearLayout>
+</ScrollView>
