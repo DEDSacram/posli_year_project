@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Přehled obchodů: souhrn + stav jednotlivých rezervací a nákupů. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:padding="16dp">
+
+        <TextView android:id="@+id/summary" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="16sp"
+            android:textStyle="bold" android:text="@string/loading" />
+
+        <Spinner android:id="@+id/role" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="12dp" />
+
+        <TextView android:id="@+id/empty" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:visibility="gone"
+            android:layout_marginTop="24dp" android:gravity="center" />
+
+        <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout android:id="@+id/list" android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>
