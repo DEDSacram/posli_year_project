@@ -7,6 +7,7 @@ import cz.bazar.repository.ReviewRepository;
 import cz.bazar.repository.SaleTransactionRepository;
 import cz.bazar.repository.SellerTaxProfileRepository;
 import cz.bazar.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.Map;
  * daňový profil (viz {@link SellerTaxProfile}) — jen jeho stav ověření.
  */
 @Service
+@RequiredArgsConstructor
 public class UserService {
   /** Odznaky založené na historii obchodů a hodnocení (zadání: „odznaky pro poctivé obchodníky“). */
   static final int TRUSTED_MIN_REVIEWS = 3;
@@ -32,14 +34,6 @@ public class UserService {
   private final ReviewRepository reviewRepo;
   private final SaleTransactionRepository transactions;
   private final DisputeService disputes;
-
-  public UserService(UserRepository users, SellerTaxProfileRepository profiles,
-                     ReviewRepository reviewRepo, SaleTransactionRepository transactions,
-                     DisputeService disputes) {
-    this.users = users; this.profiles = profiles;
-    this.reviewRepo = reviewRepo; this.transactions = transactions;
-    this.disputes = disputes;
-  }
 
   public Map<String, Object> publicProfile(Long id) {
     User u = users.findById(id).orElseThrow(() -> ApiException.notFound("USER_NOT_FOUND", "Uživatel nenalezen."));

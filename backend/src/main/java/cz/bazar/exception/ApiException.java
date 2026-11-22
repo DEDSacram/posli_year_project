@@ -1,7 +1,9 @@
 package cz.bazar.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class ApiException extends RuntimeException {
   private final HttpStatus status;
   private final String code;
@@ -14,11 +16,7 @@ public class ApiException extends RuntimeException {
     this.messageCs = messageCs;
   }
 
-  public HttpStatus getStatus() { return status; }
-  public String getCode() { return code; }
-  public String getMessageCs() { return messageCs; }
-
-  public static ApiException badRequest(String code, String msg) {
+    public static ApiException badRequest(String code, String msg) {
     return new ApiException(HttpStatus.BAD_REQUEST, code, msg);
   }
   public static ApiException unauthorized(String code, String msg) {

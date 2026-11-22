@@ -3,23 +3,20 @@ package cz.bazar.scheduler;
 import cz.bazar.repository.ReportRepository;
 import cz.bazar.service.AuditService;
 import cz.bazar.service.Dac7Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class Dac7Scheduler {
-  private static final Logger log = LoggerFactory.getLogger(Dac7Scheduler.class);
   private final Dac7Service dac7;
   private final AuditService audit;
   private final ReportRepository reports;
-
-  public Dac7Scheduler(Dac7Service dac7, AuditService audit, ReportRepository reports) {
-    this.dac7 = dac7; this.audit = audit; this.reports = reports;
-  }
 
   /** Cron 1x rocne: DAC7 export + souhrn moderace (leden). */
   @Scheduled(cron = "0 0 3 5 1 *")

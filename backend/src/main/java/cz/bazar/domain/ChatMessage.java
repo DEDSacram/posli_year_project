@@ -1,8 +1,13 @@
 package cz.bazar.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "messages")
 public class ChatMessage {
@@ -17,14 +22,4 @@ public class ChatMessage {
   @Column(name = "sent_at")
   private OffsetDateTime sentAt;
 
-  public Long getId() { return id; }
-  public void setId(Long id) { this.id = id; }
-  public Long getConversationId() { return conversationId; }
-  public void setConversationId(Long conversationId) { this.conversationId = conversationId; }
-  public Long getSenderId() { return senderId; }
-  public void setSenderId(Long senderId) { this.senderId = senderId; }
-  public String getBodyText() { return bodyText; }
-  public void setBodyText(String bodyText) { this.bodyText = bodyText; }
-  public OffsetDateTime getSentAt() { return sentAt; }
-  public void setSentAt(OffsetDateTime sentAt) { this.sentAt = sentAt; }
 }

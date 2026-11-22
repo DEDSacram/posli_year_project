@@ -6,6 +6,7 @@ import cz.bazar.domain.User;
 import cz.bazar.exception.ApiException;
 import cz.bazar.repository.ReviewDisputeRepository;
 import cz.bazar.repository.ReviewRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,17 +21,12 @@ import java.util.Map;
  * otevřenou námitku smí vyhodnotit jen admin.
  */
 @Service
+@RequiredArgsConstructor
 public class DisputeService {
   private final ReviewDisputeRepository disputes;
   private final ReviewRepository reviews;
   private final CurrentUserService current;
   private final AuditService audit;
-
-  public DisputeService(ReviewDisputeRepository disputes, ReviewRepository reviews,
-                        CurrentUserService current, AuditService audit) {
-    this.disputes = disputes; this.reviews = reviews;
-    this.current = current; this.audit = audit;
-  }
 
   @Transactional
   public ReviewDispute create(Long reviewId, String reason) {

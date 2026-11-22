@@ -1,8 +1,13 @@
 package cz.bazar.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "reports")
 public class Report {
@@ -23,20 +28,4 @@ public class Report {
   @Column(name = "created_at")
   private OffsetDateTime createdAt;
 
-  public Long getId() { return id; }
-  public void setId(Long id) { this.id = id; }
-  public String getTargetType() { return targetType; }
-  public void setTargetType(String targetType) { this.targetType = targetType; }
-  public Long getTargetId() { return targetId; }
-  public void setTargetId(Long targetId) { this.targetId = targetId; }
-  public Long getReporterId() { return reporterId; }
-  public void setReporterId(Long reporterId) { this.reporterId = reporterId; }
-  public String getReason() { return reason; }
-  public void setReason(String reason) { this.reason = reason; }
-  public boolean isTrustedFlagger() { return trustedFlagger; }
-  public void setTrustedFlagger(boolean trustedFlagger) { this.trustedFlagger = trustedFlagger; }
-  public String getStatus() { return status; }
-  public void setStatus(String status) { this.status = status; }
-  public OffsetDateTime getCreatedAt() { return createdAt; }
-  public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
 }

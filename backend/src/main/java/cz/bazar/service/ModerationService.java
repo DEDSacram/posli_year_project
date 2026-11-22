@@ -7,6 +7,7 @@ import cz.bazar.exception.ApiException;
 import cz.bazar.repository.*;
 import cz.bazar.security.ApiRateLimiter;
 import cz.bazar.security.RateLimitProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.time.OffsetDateTime;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ModerationService {
   private final ReportRepository reports;
   private final ListingRepository listings;
@@ -23,14 +25,6 @@ public class ModerationService {
   private final AuditService audit;
   private final ApiRateLimiter rateLimiter;
   private final RateLimitProperties limits;
-
-  public ModerationService(ReportRepository reports, ListingRepository listings, ReviewRepository reviews,
-                           CurrentUserService current, AuditService audit,
-                           ApiRateLimiter rateLimiter, RateLimitProperties limits) {
-    this.reports = reports; this.listings = listings; this.reviews = reviews;
-    this.current = current; this.audit = audit;
-    this.rateLimiter = rateLimiter; this.limits = limits;
-  }
 
   @Transactional
   public Report report(ReportCreate r) {

@@ -5,6 +5,7 @@ import cz.bazar.domain.User;
 import cz.bazar.dto.Dtos.*;
 import cz.bazar.exception.ApiException;
 import cz.bazar.repository.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import java.time.OffsetDateTime;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class GdprService {
   private final UserRepository users;
   private final SellerTaxProfileRepository profiles;
@@ -19,13 +21,6 @@ public class GdprService {
   private final ConsentRepository consents;
   private final FavoriteRepository favorites;
   private final CurrentUserService current;
-
-  public GdprService(UserRepository users, SellerTaxProfileRepository profiles,
-                     ListingRepository listings, ConsentRepository consents,
-                     FavoriteRepository favorites, CurrentUserService current) {
-    this.users = users; this.profiles = profiles; this.listings = listings;
-    this.consents = consents; this.favorites = favorites; this.current = current;
-  }
 
   @Transactional
   public Consent consent(ConsentCreate r) {

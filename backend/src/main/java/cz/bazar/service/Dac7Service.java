@@ -9,6 +9,7 @@ import cz.bazar.repository.ListingRepository;
 import cz.bazar.repository.SaleTransactionRepository;
 import cz.bazar.repository.SellerTaxProfileRepository;
 import cz.bazar.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ import java.util.*;
  * zda prodejce překročil reportingový práh.
  */
 @Service
+@RequiredArgsConstructor
 public class Dac7Service {
   private static final DateTimeFormatter TS = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
@@ -31,13 +33,6 @@ public class Dac7Service {
   private final SellerTaxProfileRepository profiles;
   private final ListingRepository listings;
   private final AesGcmService crypto;
-
-  public Dac7Service(SaleTransactionRepository transactions, UserRepository users,
-                     SellerTaxProfileRepository profiles, ListingRepository listings,
-                     AesGcmService crypto) {
-    this.transactions = transactions; this.users = users;
-    this.profiles = profiles; this.listings = listings; this.crypto = crypto;
-  }
 
   /** Řádek výkazu — jedna obchodující osoba. */
   public record Row(Long userId, String email, String fullName, String taxId, String ico,

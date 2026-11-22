@@ -1,5 +1,6 @@
 package cz.bazar.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -8,9 +9,9 @@ import cz.bazar.exception.ApiException;
 import cz.bazar.repository.UserRepository;
 
 @Service
+@RequiredArgsConstructor
 public class CurrentUserService {
   private final UserRepository users;
-  public CurrentUserService(UserRepository users) { this.users = users; }
 
   public User require() {
     Authentication a = SecurityContextHolder.getContext().getAuthentication();

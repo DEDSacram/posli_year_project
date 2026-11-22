@@ -1,8 +1,13 @@
 package cz.bazar.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "listings")
 public class Listing {
@@ -31,30 +36,4 @@ public class Listing {
   @Column(name = "created_at")
   private OffsetDateTime createdAt;
 
-  public Long getId() { return id; }
-  public void setId(Long id) { this.id = id; }
-  public Long getSellerId() { return sellerId; }
-  public void setSellerId(Long sellerId) { this.sellerId = sellerId; }
-  public String getTitle() { return title; }
-  public void setTitle(String title) { this.title = title; }
-  public String getDescription() { return description; }
-  public void setDescription(String description) { this.description = description; }
-  public Integer getPriceCzk() { return priceCzk; }
-  public void setPriceCzk(Integer priceCzk) { this.priceCzk = priceCzk; }
-  public String getCategory() { return category; }
-  public void setCategory(String category) { this.category = category; }
-  public String getConditionValue() { return conditionValue; }
-  public void setConditionValue(String conditionValue) { this.conditionValue = conditionValue; }
-  public String getCity() { return city; }
-  public void setCity(String city) { this.city = city; }
-  public Double getLat() { return lat; }
-  public void setLat(Double lat) { this.lat = lat; }
-  public Double getLon() { return lon; }
-  public void setLon(Double lon) { this.lon = lon; }
-  public String getSellerTypeSnapshot() { return sellerTypeSnapshot; }
-  public void setSellerTypeSnapshot(String s) { this.sellerTypeSnapshot = s; }
-  public String getStatus() { return status; }
-  public void setStatus(String status) { this.status = status; }
-  public OffsetDateTime getCreatedAt() { return createdAt; }
-  public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
 }

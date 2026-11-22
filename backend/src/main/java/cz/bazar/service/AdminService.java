@@ -5,6 +5,7 @@ import cz.bazar.domain.User;
 import cz.bazar.exception.ApiException;
 import cz.bazar.repository.AuditLogRepository;
 import cz.bazar.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.Map;
  * a blokace účtů. Každý zásah je zapsán do audit logu.
  */
 @Service
+@RequiredArgsConstructor
 public class AdminService {
   private static final int MAX_LIMIT = 50;
 
@@ -26,11 +28,6 @@ public class AdminService {
   private final UserRepository users;
   private final CurrentUserService current;
   private final AuditService audit;
-
-  public AdminService(AuditLogRepository auditLogRepo, UserRepository users,
-                      CurrentUserService current, AuditService audit) {
-    this.auditLogRepo = auditLogRepo; this.users = users; this.current = current; this.audit = audit;
-  }
 
   /**
    * Audit log — stránkovaný, volitelně filtrovaný podle akce.

@@ -9,12 +9,14 @@ import cz.bazar.security.JwtService;
 import cz.bazar.security.ApiRateLimiter;
 import cz.bazar.security.LoginRateLimiter;
 import cz.bazar.security.RateLimitProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
   private final UserRepository users;
   private final PasswordEncoder passwordEncoder;
@@ -23,14 +25,6 @@ public class AuthService {
   private final ApiRateLimiter apiLimiter;
   private final RateLimitProperties limits;
   private final CustomUserDetailsService userDetails;
-
-  public AuthService(UserRepository users, PasswordEncoder passwordEncoder, JwtService jwt,
-                     LoginRateLimiter rateLimiter, ApiRateLimiter apiLimiter,
-                     RateLimitProperties limits, CustomUserDetailsService userDetails) {
-    this.users = users; this.passwordEncoder = passwordEncoder;
-    this.jwt = jwt; this.rateLimiter = rateLimiter; this.apiLimiter = apiLimiter;
-    this.limits = limits; this.userDetails = userDetails;
-  }
 
   public AuthResponse register(RegisterRequest r, String ip) {
     apiLimiter.check("register:" + ip, limits.getRegister(), "Příliš mnoho registrací. Zkuste to později.");

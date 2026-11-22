@@ -6,6 +6,7 @@ import cz.bazar.domain.User;
 import cz.bazar.exception.ApiException;
 import cz.bazar.repository.FavoriteRepository;
 import cz.bazar.repository.ListingRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,17 +18,12 @@ import java.util.Map;
 
 /** Oblíbené inzeráty navázané na uživatelský profil (ne na zařízení). */
 @Service
+@RequiredArgsConstructor
 public class FavoriteService {
   private final FavoriteRepository favorites;
   private final ListingRepository listings;
   private final ListingService listingService;
   private final CurrentUserService current;
-
-  public FavoriteService(FavoriteRepository favorites, ListingRepository listings,
-                         ListingService listingService, CurrentUserService current) {
-    this.favorites = favorites; this.listings = listings;
-    this.listingService = listingService; this.current = current;
-  }
 
   @Transactional(readOnly = true)
   public List<Long> ids() {

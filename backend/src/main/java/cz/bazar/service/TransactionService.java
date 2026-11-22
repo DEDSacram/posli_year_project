@@ -10,6 +10,7 @@ import cz.bazar.repository.ReviewRepository;
 import cz.bazar.repository.SaleTransactionRepository;
 import cz.bazar.security.ApiRateLimiter;
 import cz.bazar.security.RateLimitProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class TransactionService {
   /** Právo spotřebitele na odstoupení od smlouvy: 14 dní od uzavření (§ 1829 OZ). */
   public static final int WITHDRAWAL_DAYS = 14;
@@ -31,15 +33,6 @@ public class TransactionService {
   private final ApiRateLimiter rateLimiter;
   private final RateLimitProperties limits;
   private final AuditService audit;
-
-  public TransactionService(SaleTransactionRepository transactions, ListingRepository listings,
-                            ReviewRepository reviewRepo, CurrentUserService current,
-                            ApiRateLimiter rateLimiter, RateLimitProperties limits,
-                            AuditService audit) {
-    this.transactions = transactions; this.listings = listings;
-    this.reviewRepo = reviewRepo; this.current = current;
-    this.rateLimiter = rateLimiter; this.limits = limits; this.audit = audit;
-  }
 
   @Transactional
   public SaleTransaction reserve(Long listingId) {

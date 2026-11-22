@@ -8,6 +8,7 @@ import cz.bazar.dto.Dtos.Page;
 import cz.bazar.exception.ApiException;
 import cz.bazar.repository.FavoriteRepository;
 import cz.bazar.repository.NotificationRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,17 +24,13 @@ import java.util.Map;
  * Upozornění vzniká při reálné změně ceny, deduplikuje se na (uživatel, inzerát, cena).
  */
 @Service
+@RequiredArgsConstructor
 public class NotificationService {
   private static final int MAX_LIMIT = 50;
 
   private final NotificationRepository notifications;
   private final FavoriteRepository favorites;
   private final CurrentUserService current;
-
-  public NotificationService(NotificationRepository notifications, FavoriteRepository favorites,
-                             CurrentUserService current) {
-    this.notifications = notifications; this.favorites = favorites; this.current = current;
-  }
 
   @Transactional(readOnly = true)
   public Page<Map<String, Object>> mine(Long cursor, int limit) {

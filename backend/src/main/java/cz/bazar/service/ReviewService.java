@@ -7,6 +7,7 @@ import cz.bazar.dto.Dtos.*;
 import cz.bazar.exception.ApiException;
 import cz.bazar.repository.ReviewRepository;
 import cz.bazar.repository.SaleTransactionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,17 +16,12 @@ import java.time.OffsetDateTime;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ReviewService {
   private final ReviewRepository reviews;
   private final SaleTransactionRepository transactions;
   private final CurrentUserService current;
   private final DisputeService disputes;
-
-  public ReviewService(ReviewRepository reviews, SaleTransactionRepository transactions,
-                       CurrentUserService current, DisputeService disputes) {
-    this.reviews = reviews; this.transactions = transactions;
-    this.current = current; this.disputes = disputes;
-  }
 
   @Transactional
   public Review create(Long transactionId, ReviewCreate r) {

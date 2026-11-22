@@ -1,6 +1,7 @@
 package cz.bazar.security;
 
 import cz.bazar.exception.ApiException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayDeque;
@@ -9,14 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /** Obecný in-memory rate-limit (klouzavé okno) pro zapisové endpointy: chat, hlášení, rezervace. */
 @Component
+@RequiredArgsConstructor
 public class ApiRateLimiter {
   private final ConcurrentHashMap<String, Deque<Long>> buckets = new ConcurrentHashMap<>();
   private final RateLimitProperties props;
-
-  public ApiRateLimiter(RateLimitProperties props) {
-    this.props = props;
-  }
-
+  
   /**
    * @param key      identifikátor klienta (IP, nebo ID uživatele)
    * @param max      maximální počet požadavků v okně

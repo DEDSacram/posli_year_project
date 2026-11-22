@@ -1,8 +1,13 @@
 package cz.bazar.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "seller_tax_profile")
 public class SellerTaxProfile {
@@ -49,45 +54,10 @@ public class SellerTaxProfile {
   @Column(name = "updated_at")
   private OffsetDateTime updatedAt;
 
-  public Long getUserId() { return userId; }
-  public void setUserId(Long userId) { this.userId = userId; }
-  public byte[] getFullName() { return fullName; }
-  public void setFullName(byte[] fullName) { this.fullName = fullName; }
-  public byte[] getDateOfBirth() { return dateOfBirth; }
-  public void setDateOfBirth(byte[] dateOfBirth) { this.dateOfBirth = dateOfBirth; }
-  public byte[] getStreet() { return street; }
-  public void setStreet(byte[] street) { this.street = street; }
-  public byte[] getCity() { return city; }
-  public void setCity(byte[] city) { this.city = city; }
-  public byte[] getPostalCode() { return postalCode; }
-  public void setPostalCode(byte[] postalCode) { this.postalCode = postalCode; }
-  public byte[] getCountry() { return country; }
-  public void setCountry(byte[] country) { this.country = country; }
-  public byte[] getTaxId() { return taxId; }
-  public void setTaxId(byte[] taxId) { this.taxId = taxId; }
-  public byte[] getIco() { return ico; }
-  public void setIco(byte[] ico) { this.ico = ico; }
-  public byte[] getIban() { return iban; }
-  public void setIban(byte[] iban) { this.iban = iban; }
-  public boolean isSelfCert() { return selfCert; }
-  public void setSelfCert(boolean selfCert) { this.selfCert = selfCert; }
-  public byte[] getIdDoc() { return idDoc; }
-  public void setIdDoc(byte[] idDoc) { this.idDoc = idDoc; }
-  public boolean isVerified() { return verified; }
-  public void setVerified(boolean verified) { this.verified = verified; }
-  public String getVerificationStatus() { return verificationStatus; }
-  public void setVerificationStatus(String v) { this.verificationStatus = v; }
-  public String getVerificationNote() { return verificationNote; }
-  public void setVerificationNote(String v) { this.verificationNote = v; }
-  public OffsetDateTime getVerifiedAt() { return verifiedAt; }
-  public void setVerifiedAt(OffsetDateTime v) { this.verifiedAt = v; }
-  public Long getVerifiedBy() { return verifiedBy; }
-  public void setVerifiedBy(Long v) { this.verifiedBy = v; }
-  /** Nastaví stav i odvozený příznak verified, aby obě reprezentace souhlasily. */
+    /** Nastaví stav i odvozený příznak verified, aby obě reprezentace souhlasily. */
   public void applyVerificationStatus(String status) {
     this.verificationStatus = status;
     this.verified = STATUS_VERIFIED.equals(status);
   }
-  public OffsetDateTime getUpdatedAt() { return updatedAt; }
-  public void setUpdatedAt(OffsetDateTime updatedAt) { this.updatedAt = updatedAt; }
+
 }

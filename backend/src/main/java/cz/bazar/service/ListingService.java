@@ -8,6 +8,7 @@ import cz.bazar.exception.ApiException;
 import cz.bazar.repository.ListingImageRepository;
 import cz.bazar.repository.ListingRepository;
 import cz.bazar.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import java.util.*;
 import javax.imageio.ImageIO;
 
 @Service
+@RequiredArgsConstructor
 public class ListingService {
   private static final Set<String> ALLOWED_MIME = Set.of("image/jpeg", "image/png", "image/webp");
   private final ListingRepository listings;
@@ -29,13 +31,6 @@ public class ListingService {
   private final CurrentUserService current;
   private final UserRepository users;
   private final NotificationService notificationService;
-
-  public ListingService(ListingRepository listings, ListingImageRepository images,
-                        SellerService sellers, CurrentUserService current, UserRepository users,
-                        NotificationService notificationService) {
-    this.listings = listings; this.images = images; this.sellers = sellers; this.current = current;
-    this.users = users; this.notificationService = notificationService;
-  }
 
   @Transactional
   public Listing create(ListingCreate r) {

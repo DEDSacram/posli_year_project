@@ -1,8 +1,13 @@
 package cz.bazar.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "favorites",
     uniqueConstraints = @UniqueConstraint(name = "favorites_user_listing_uq",
@@ -19,14 +24,4 @@ public class Favorite {
   @Column(name = "price_at_save")
   private Integer priceAtSave;
 
-  public Long getId() { return id; }
-  public void setId(Long id) { this.id = id; }
-  public Long getUserId() { return userId; }
-  public void setUserId(Long userId) { this.userId = userId; }
-  public Long getListingId() { return listingId; }
-  public void setListingId(Long listingId) { this.listingId = listingId; }
-  public OffsetDateTime getCreatedAt() { return createdAt; }
-  public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
-  public Integer getPriceAtSave() { return priceAtSave; }
-  public void setPriceAtSave(Integer priceAtSave) { this.priceAtSave = priceAtSave; }
 }

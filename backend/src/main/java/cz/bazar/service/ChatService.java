@@ -6,6 +6,7 @@ import cz.bazar.exception.ApiException;
 import cz.bazar.repository.*;
 import cz.bazar.security.ApiRateLimiter;
 import cz.bazar.security.RateLimitProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.time.OffsetDateTime;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ChatService {
   private final ConversationRepository conversations;
   private final ChatMessageRepository messages;
@@ -22,14 +24,6 @@ public class ChatService {
   private final CurrentUserService current;
   private final ApiRateLimiter rateLimiter;
   private final RateLimitProperties limits;
-
-  public ChatService(ConversationRepository conversations, ChatMessageRepository messages,
-                     ListingRepository listings, CurrentUserService current,
-                     ApiRateLimiter rateLimiter, RateLimitProperties limits) {
-    this.conversations = conversations; this.messages = messages;
-    this.listings = listings; this.current = current;
-    this.rateLimiter = rateLimiter; this.limits = limits;
-  }
 
   @Transactional
   public Conversation getOrCreate(Long listingId) {

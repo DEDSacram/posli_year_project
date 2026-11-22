@@ -1,8 +1,13 @@
 package cz.bazar.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.OffsetDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "transactions")
 public class SaleTransaction {
@@ -28,24 +33,4 @@ public class SaleTransaction {
   @Column(name = "withdrawal_reason")
   private String withdrawalReason;
 
-  public Long getId() { return id; }
-  public void setId(Long id) { this.id = id; }
-  public Long getListingId() { return listingId; }
-  public void setListingId(Long listingId) { this.listingId = listingId; }
-  public Long getBuyerId() { return buyerId; }
-  public void setBuyerId(Long buyerId) { this.buyerId = buyerId; }
-  public Long getSellerId() { return sellerId; }
-  public void setSellerId(Long sellerId) { this.sellerId = sellerId; }
-  public Integer getPriceCzk() { return priceCzk; }
-  public void setPriceCzk(Integer priceCzk) { this.priceCzk = priceCzk; }
-  public String getStatus() { return status; }
-  public void setStatus(String status) { this.status = status; }
-  public String getSellerTypeSnapshot() { return sellerTypeSnapshot; }
-  public void setSellerTypeSnapshot(String s) { this.sellerTypeSnapshot = s; }
-  public OffsetDateTime getCompletedAt() { return completedAt; }
-  public void setCompletedAt(OffsetDateTime completedAt) { this.completedAt = completedAt; }
-  public OffsetDateTime getWithdrawnAt() { return withdrawnAt; }
-  public void setWithdrawnAt(OffsetDateTime v) { this.withdrawnAt = v; }
-  public String getWithdrawalReason() { return withdrawalReason; }
-  public void setWithdrawalReason(String v) { this.withdrawalReason = v; }
 }

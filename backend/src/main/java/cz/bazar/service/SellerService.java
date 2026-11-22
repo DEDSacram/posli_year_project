@@ -8,6 +8,7 @@ import cz.bazar.exception.ApiException;
 import cz.bazar.repository.SaleTransactionRepository;
 import cz.bazar.repository.SellerTaxProfileRepository;
 import cz.bazar.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class SellerService {
   /** 2000 EUR ~ 50 000 CZK (orientacni kurz 25 CZK/EUR dle design_doc). */
   public static final long DAC7_AMOUNT_THRESHOLD_CZK = 50_000L;
@@ -31,14 +33,6 @@ public class SellerService {
   private final AesGcmService crypto;
   private final CurrentUserService current;
   private final AuditService audit;
-
-  public SellerService(SellerTaxProfileRepository profiles, UserRepository users,
-                       SaleTransactionRepository transactions, AesGcmService crypto,
-                       CurrentUserService current, AuditService audit) {
-    this.profiles = profiles; this.users = users;
-    this.transactions = transactions; this.crypto = crypto; this.current = current;
-    this.audit = audit;
-  }
 
   @Transactional
   public void saveSellerInfo(SellerInfoRequest r) {
