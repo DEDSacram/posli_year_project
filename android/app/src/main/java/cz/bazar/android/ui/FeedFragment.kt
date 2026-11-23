@@ -55,10 +55,16 @@ class ListingAdapter(
         view.findViewById<TextView>(R.id.meta).text = "$seller · ${J.str(item, "city")}"
 
         val thumb = view.findViewById<ImageView>(R.id.thumb)
+        thumb.setImageDrawable(null)
+        thumb.tag = null
         val images = J.arr(item, "images")
         if (images.isNotEmpty()) {
-            ImageLoader.load(thumb, ImageLoader.url(base, J.lng(item, "id"), J.lng(images[0], "id")))
+            val listingId = J.lng(item, "id")
+            val imageId = J.lng(images[0], "id")
+            val imageUrl = ImageLoader.url(base, listingId, imageId)
+            ImageLoader.load(thumb, imageUrl)
         } else {
+            thumb.tag = null
             thumb.setImageResource(android.R.color.darker_gray)
         }
 
@@ -76,6 +82,7 @@ class FeedFragment : androidx.fragment.app.Fragment() {
     private lateinit var empty: TextView
     private var cursor: String? = null
     private var loading = false
+    private var hasMore = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,52 +90,94 @@ class FeedFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
+
         client = BazarClient(requireContext())
+
+        // Počáteční stav načítání
+        cursor = null
+        loading = false
+        hasMore = true
+
         progress = view.findViewById(R.id.progress)
         empty = view.findViewById(R.id.empty)
 
         adapter = ListingAdapter(requireContext(), client.baseUrl()) { item ->
             DetailActivity.open(requireContext(), J.lng(item, "id"))
         }
+
         view.findViewById<ListView>(R.id.list).apply {
-            this.adapter = this@FeedFragment.adapter
+            adapter = this@FeedFragment.adapter
+
             setOnScrollListener(
                 object : AbsListView.OnScrollListener {
-                    override fun onScrollStateChanged(v: AbsListView?, scrollState: Int) = Unit
 
-                    override fun onScroll(v: AbsListView?, firstVisible: Int, visible: Int, total: Int) {
-                        if (total > 0 && firstVisible + visible >= total - 2) loadMore()
+                    override fun onScrollStateChanged(
+                        v: AbsListView?,
+                        scrollState: Int,
+                    ) = Unit
+
+                    override fun onScroll(
+                        v: AbsListView?,
+                        firstVisible: Int,
+                        visible: Int,
+                        total: Int,
+                    ) {
+                        if (
+                            total > 0 &&
+                            firstVisible + visible >= total - 2
+                        ) {
+                            loadMore()
+                        }
                     }
                 },
             )
         }
 
+        // První načtení inzerátů
         loadMore()
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        client = BazarClient(requireContext())
-    }
-
     private fun loadMore() {
-        if (loading) return
+        if (loading || !hasMore) return
+
         loading = true
         progress.visibility = View.VISIBLE
+
         client.api().feed(cursor?.toLong(), 20).enqueue(
             object : Ui<JsonObject>(requireActivity(), "Načtení selhalo") {
+
                 override fun settle() {
                     loading = false
-                    if (isAdded) progress.visibility = View.GONE
+
+                    if (isAdded) {
+                        progress.visibility = View.GONE
+                    }
                 }
 
                 override fun ok(body: JsonObject) {
                     if (!isAdded) return
+
                     val data = J.data(body)
-                    if (cursor == null) adapter.set(data) else adapter.addAll(data)
-                    cursor = J.nextCursor(body)
-                    empty.visibility = if (adapter.count == 0) View.VISIBLE else View.GONE
+                    val next = J.nextCursor(body)
+
+                    // Nejdříve nastavíme stránkování,
+                    // až potom aktualizujeme seznam.
+                    cursor = next
+                    hasMore = next != null && data.isNotEmpty()
+
+                    if (cursor == null && data.isEmpty()) {
+                        hasMore = false
+                    }
+
+                    if (adapter.count == 0) {
+                        adapter.set(data)
+                    } else {
+                        adapter.addAll(data)
+                    }
+
+                    empty.visibility =
+                        if (adapter.count == 0) View.VISIBLE else View.GONE
                 }
             },
         )

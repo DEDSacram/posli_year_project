@@ -137,7 +137,6 @@ class SearchFragment : Fragment() {
 
     private fun fetch(params: Map<String, String>) {
         progress.visibility = View.VISIBLE
-        android.util.Log.d("SEARCH_FILTER", "Odesílám: $params")
         client.api().search(params).enqueue(
             object : Ui<JsonObject>(requireActivity(), "Hledání selhalo") {
                 override fun settle() {
