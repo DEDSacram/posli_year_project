@@ -31,6 +31,8 @@ class SearchFragment : Fragment() {
     private lateinit var query: EditText
     private lateinit var zip: EditText
     private lateinit var radius: EditText
+    private lateinit var minPrice: EditText
+    private lateinit var maxPrice: EditText
     private lateinit var category: Spinner
     private lateinit var sort: Spinner
 
@@ -44,6 +46,8 @@ class SearchFragment : Fragment() {
         query = view.findViewById(R.id.q)
         zip = view.findViewById(R.id.zip)
         radius = view.findViewById(R.id.radius)
+        minPrice = view.findViewById(R.id.minPrice)
+        maxPrice = view.findViewById(R.id.maxPrice)
         category = view.findViewById(R.id.category)
         sort = view.findViewById(R.id.sort)
         progress = view.findViewById(R.id.progress)
@@ -91,6 +95,23 @@ class SearchFragment : Fragment() {
         params["category"] = CATS[category.selectedItemPosition]
         params["sort"] = SORTS[sort.selectedItemPosition]
         params["limit"] = "20"
+        val min = minPrice.text.toString().trim()
+        val max = maxPrice.text.toString().trim()
+        if (min.isNotEmpty()) params["minPrice"] = min
+        if (max.isNotEmpty()) params["maxPrice"] = max
+        if (min.isNotEmpty() && max.isNotEmpty()) {
+            val minValue = min.toDoubleOrNull()
+            val maxValue = max.toDoubleOrNull()
+
+            if (minValue == null || maxValue == null || minValue > maxValue) {
+                android.widget.Toast.makeText(
+                    requireContext(),
+                    "Zkontroluj zadané cenové rozmezí.",
+                    android.widget.Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
+        }
 
         val z = zip.text.toString().replace(Regex("\\s"), "")
         val r = radius.text.toString().trim()
@@ -116,6 +137,7 @@ class SearchFragment : Fragment() {
 
     private fun fetch(params: Map<String, String>) {
         progress.visibility = View.VISIBLE
+        android.util.Log.d("SEARCH_FILTER", "Odesílám: $params")
         client.api().search(params).enqueue(
             object : Ui<JsonObject>(requireActivity(), "Hledání selhalo") {
                 override fun settle() {

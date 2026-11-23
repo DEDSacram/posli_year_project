@@ -29,6 +29,14 @@
             android:layout_height="wrap_content" android:hint="@string/radius_hint"
             android:inputType="numberDecimal" />
     </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="4dp">
+        <EditText android:id="@+id/minPrice" android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content" android:hint="Cena od"
+            android:inputType="number" />
+        <EditText android:id="@+id/maxPrice" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:hint="Cena do" android:inputType="number" />
+    </LinearLayout>
 
     <ProgressBar android:id="@+id/progress" android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_gravity="center"
