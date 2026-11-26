@@ -1,9 +1,14 @@
 package cz.bazar.controller;
 
+import cz.bazar.domain.ListingImage;
+import cz.bazar.domain.User;
 import cz.bazar.dto.Dtos.*;
+import cz.bazar.service.CurrentUserService;
 import cz.bazar.service.ListingService;
 import cz.bazar.service.SearchService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,14 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/listings")
 public class ListingController {
   private final ListingService listings;
   private final SearchService search;
-
-  public ListingController(ListingService listings, SearchService search) {
-    this.listings = listings; this.search = search;
-  }
+  private final CurrentUserService current;
 
   @PostMapping
   public ResponseEntity<Map<String, Object>> create(@Valid @RequestBody ListingCreate r) {
@@ -27,7 +30,9 @@ public class ListingController {
   }
 
   @GetMapping("/{id}")
-  public Map<String, Object> get(@PathVariable Long id) { return listings.toMap(listings.get(id)); }
+  public Map<String, Object> get(@PathVariable Long id) {
+    return listings.toMap(listings.get(id, current.optionalId()));
+  }
 
   @PutMapping("/{id}")
   public Map<String, Object> update(@PathVariable Long id, @Valid @RequestBody ListingUpdate r) {
@@ -53,16 +58,19 @@ public class ListingController {
     return ResponseEntity.ok(Map.of("status", "deleted"));
   }
 
-  @GetMapping("/{id}/images/{imgId}")
-  public ResponseEntity<byte[]> getImage(@PathVariable Long id, @PathVariable Long imgId) {
-    var img = listings.getImage(id, imgId);
+  @GetMapping("/{listingId}/images/{imgId}")
+  public ResponseEntity<byte[]> getImage(@PathVariable Long listingId,
+                                         @PathVariable Long imgId) {
+    ListingImage img = listings.getImage(listingId, imgId, current.optionalId());
     return ResponseEntity.ok()
-        .contentType(org.springframework.http.MediaType.parseMediaType(img.getMime()))
-        .body(img.getData());
+            .contentType(MediaType.parseMediaType(img.getMime()))
+            .body(img.getData());
   }
 
   @GetMapping("/{id}/rights-info")
-  public RightsInfo rightsInfo(@PathVariable Long id) { return listings.rightsInfo(id); }
+  public RightsInfo rightsInfo(@PathVariable Long id) {
+    return listings.rightsInfo(id, current.optionalId());
+  }
 
   @GetMapping("/search")
   public Page<Map<String, Object>> search(

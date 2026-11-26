@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import cz.bazar.repository.SaleTransactionRepository;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -31,6 +32,7 @@ public class ListingService {
   private final CurrentUserService current;
   private final UserRepository users;
   private final NotificationService notificationService;
+  private final SaleTransactionRepository transactions;
 
   @Transactional
   public Listing create(ListingCreate r) {
@@ -112,19 +114,33 @@ public class ListingService {
     listings.save(l);
   }
 
-  public Listing get(Long id) {
-    Listing l = listings.findById(id).orElseThrow(() -> ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen."));
-    if ("removed".equals(l.getStatus())) throw ApiException.notFound("LISTING_REMOVED", "Inzerát byl odstraněn moderací.");
-    if ("deleted".equals(l.getStatus()) || "completed".equals(l.getStatus())) throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
-    return l;
+  public Listing get(Long id, Long viewerId) {
+    Listing l = listings.findById(id)
+            .orElseThrow(() -> ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen."));
+
+    if ("removed".equals(l.getStatus()) || "deleted".equals(l.getStatus())) {
+      throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
+    }
+
+    if ("active".equals(l.getStatus())) {
+      return l;
+    }
+
+    if ("completed".equals(l.getStatus())) {
+      if (viewerId != null && canViewCompleted(l, viewerId)) {
+        return l;
+      }
+      throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
+    }
+    throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
   }
 
-  public RightsInfo rightsInfo(Long id) {
-    Listing l = get(id);
+  public RightsInfo rightsInfo(Long id, Long viewerId) {
+    Listing l = get(id, viewerId);
     boolean trader = "trader".equals(l.getSellerTypeSnapshot());
     String cs = trader
-        ? "Prodejce je obchodník – máte 14denní právo na odstoupení od smlouvy dle § 1829 OZ (není-li výjimka dle § 1837)."
-        : "Prodejce je soukromá osoba – 14denní odstoupení se neuplatní.";
+            ? "Prodejce je obchodník – máte 14denní právo na odstoupení od smlouvy dle § 1829 OZ (není-li výjimka dle § 1837)."
+            : "Prodejce je soukromá osoba – 14denní odstoupení se neuplatní.";
     return new RightsInfo(trader, l.getSellerTypeSnapshot(), cs);
   }
 
@@ -187,16 +203,12 @@ public class ListingService {
   }
 
   @Transactional(readOnly = true)
-  public ListingImage getImage(Long listingId, Long imgId) {
+  public ListingImage getImage(Long listingId, Long imgId, Long viewerId) {
     ListingImage img = images.findById(imgId)
-        .orElseThrow(() -> ApiException.notFound("IMAGE_NOT_FOUND", "Obrázek nenalezen."));
+            .orElseThrow(() -> ApiException.notFound("IMAGE_NOT_FOUND", "Obrázek nenalezen."));
     if (!img.getListingId().equals(listingId))
       throw ApiException.badRequest("IMAGE_MISMATCH", "Obrázek nepatří k inzerátu.");
-    // Smazané/odstraněné inzeráty nevystavovat ani přes přímé URL obrázků.
-    listings.findById(listingId).ifPresent(l -> {
-      if ("removed".equals(l.getStatus()) || "deleted".equals(l.getStatus()))
-        throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
-    });
+    Listing l = get(listingId, viewerId);
     return img;
   }
 
@@ -276,6 +288,11 @@ public class ListingService {
       if (score > bestScore) { bestScore = score; best = e.getKey(); }
     }
     return bestScore > 0 ? best : "ostatni";
+  }
+
+  private boolean canViewCompleted(Listing l, Long viewerId) {
+    if (viewerId.equals(l.getSellerId())) return true;
+    return transactions.existsByListingIdAndBuyerId(l.getId(), viewerId);
   }
 
   public Map<String, Object> toMap(Listing l) {    Map<String, Object> m = new LinkedHashMap<>();

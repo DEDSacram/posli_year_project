@@ -154,7 +154,7 @@ export const api = {
     request<Page<Listing>>(`/listings/feed?limit=${limit}${cursor ? `&cursor=${cursor}` : ""}`),
   searchListings: (params: URLSearchParams) =>
     request<Page<Listing>>(`/listings/search?${params.toString()}`),
-  listing: (id: Id) => request<Listing>(`/listings/${id}`),
+  listing: (id: Id) => request<Listing>(`/listings/${id}`, { auth: true }),
   createListing: (payload: ListingPayload) =>
     request<Listing>("/listings", { method: "POST", body: payload, auth: true }),
   updateListing: (id: Id, payload: Partial<ListingPayload>) =>
@@ -164,7 +164,7 @@ export const api = {
   deleteListingImage: (id: Id, imgId: Id) =>
     request<unknown>(`/listings/${id}/images/${imgId}`, { method: "DELETE", auth: true }),
   listingImages: (id: Id) => request<ListingImage[]>(`/listings/${id}/images`, { auth: true }),
-  rightsInfo: (id: Id) => request<RightsInfo>(`/listings/${id}/rights-info`),
+  rightsInfo: (id: Id) => request<RightsInfo>(`/listings/${id}/rights-info`, { auth: true }),
   suggest: (title: string, category: string) =>
     request<{ categoryGuess?: string | null; medianPriceCzk?: number | null; sampleSize?: number | null }>(
       `/listings/suggest?title=${encodeURIComponent(title)}&category=${encodeURIComponent(category)}`),

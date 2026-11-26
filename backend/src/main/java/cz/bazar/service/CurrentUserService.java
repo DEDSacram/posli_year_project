@@ -28,4 +28,11 @@ public class CurrentUserService {
     if (a == null || a.getName() == null || "anonymousUser".equals(a.getName())) return null;
     return users.findByEmailIgnoreCase(a.getName()).map(User::getId).orElse(null);
   }
+  public Long optionalId() {
+    try {
+      return require().getId();
+    } catch (ApiException e) {
+      return null;
+    }
+  }
 }

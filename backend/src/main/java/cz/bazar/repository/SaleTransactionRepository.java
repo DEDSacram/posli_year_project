@@ -49,4 +49,6 @@ public interface SaleTransactionRepository extends JpaRepository<SaleTransaction
 
   @Query("select t.status, count(t) from SaleTransaction t where t.buyerId = :buyerId group by t.status")
   List<Object[]> countByStatusForBuyer(Long buyerId);
+
+  boolean existsByListingIdAndBuyerId(Long listingId, Long buyerId);
 }
