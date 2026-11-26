@@ -115,7 +115,7 @@ public class ListingService {
   public Listing get(Long id) {
     Listing l = listings.findById(id).orElseThrow(() -> ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen."));
     if ("removed".equals(l.getStatus())) throw ApiException.notFound("LISTING_REMOVED", "Inzerát byl odstraněn moderací.");
-    if ("deleted".equals(l.getStatus())) throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
+    if ("deleted".equals(l.getStatus()) || "completed".equals(l.getStatus())) throw ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen.");
     return l;
   }
 

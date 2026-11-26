@@ -65,6 +65,12 @@ public class TransactionService {
     t.setStatus("completed");
     t.setCompletedAt(OffsetDateTime.now()); // completed = znalost provedeni pro DAC7
     SaleTransaction saved = transactions.save(t);
+
+    Listing listing = listings.findById(t.getListingId())
+            .orElseThrow(() -> ApiException.notFound("LISTING_NOT_FOUND", "Inzerát nenalezen."));
+    listing.setStatus("completed");
+    listings.save(listing);
+
     audit.log(me.getId(), "TRANSACTION_COMPLETED", "transaction", id);
     return saved;
   }
