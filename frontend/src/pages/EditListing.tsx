@@ -2,11 +2,12 @@ import {
   useEffect, useState, type FormEvent, type ReactElement,
 } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api, imageUrl } from "../api";
+import { api } from "../api";
 import { useAuth } from "../auth";
 import { useAlerts } from "../alerts";
 import type { ListingImage, ListingPayload } from "../types";
 import ImagePicker, { type PendingImage } from "../components/ImagePicker";
+import ListingImageView from "../components/ListingImage";
 import LocationPicker, { resolveZip, useProfileLocation } from "../components/LocationPicker";
 import Field, { SelectField, validateForm } from "../components/Field";
 import SaveLocationPrompt from "../components/SaveLocationPrompt";
@@ -258,7 +259,12 @@ export default function EditListing(): ReactElement {
                   key={img.id}
                   className="relative w-20 aspect-square rounded overflow-hidden border border-gray-300"
                 >
-                  <img src={imageUrl(listingId, img)} alt="" className="w-full h-full object-cover" />
+                  <ListingImageView
+                    listingId={listingId}
+                    image={img}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
                   <button
                     type="button"
                     onClick={() => void deleteImage(img.id)}

@@ -1,8 +1,9 @@
 import { useEffect, type ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { fmtPrice, imageUrl } from "../api";
+import { fmtPrice } from "../api";
 import type { Listing } from "../types";
 import { useFav } from "./favs";
+import ListingImage from "./ListingImage";
 import { SellerRating } from "./widgets";
 
 interface QuickViewProps {
@@ -49,8 +50,9 @@ export default function QuickView({
         </button>
         <div className="rounded-lg overflow-hidden bg-gray-100 aspect-[4/3] mb-3">
           {images.length ? (
-            <img
-              src={imageUrl(item.id, images[0])}
+            <ListingImage
+              listingId={item.id}
+              image={images[0]}
               alt={item.title}
               className="w-full h-full object-cover"
             />

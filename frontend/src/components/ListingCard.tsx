@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { fmtPrice, imageUrl } from "../api";
+import { fmtPrice } from "../api";
 import type { Listing } from "../types";
 import { useFav } from "./favs";
+import ListingImage from "./ListingImage";
 import { SellerRating } from "./widgets";
 
 /** Náhradník obrázku, dokud se fotka načítá nebo když inzerát žádnou nemá. */
@@ -46,8 +47,9 @@ export default function ListingCard({
           className="w-[40%] bg-gray-200 rounded-lg overflow-hidden border border-gray-200 shrink-0 block"
         >
           {images.length ? (
-            <img
-              src={imageUrl(item.id, images[0])}
+            <ListingImage
+              listingId={item.id}
+              image={images[0]}
               alt={item.title}
               className="w-full h-full object-cover"
               loading="lazy"
@@ -116,8 +118,9 @@ export default function ListingCard({
                 to={`/inzerat/${item.id}`}
                 className="w-1/3 aspect-square bg-gray-200 rounded overflow-hidden border border-gray-300 block"
               >
-                <img
-                  src={imageUrl(item.id, t)}
+                <ListingImage
+                  listingId={item.id}
+                  image={t}
                   alt=""
                   className="w-full h-full object-cover"
                   loading="lazy"

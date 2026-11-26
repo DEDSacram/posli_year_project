@@ -258,9 +258,31 @@ async function upload<T>(path: string, file: File): Promise<T> {
   return request<T>(path, { method: "POST", form, auth: true });
 }
 
-/** URL obrázku inzerátu (backend drží binární data v `listing_images`). */
+/** Veřejná URL obrázku inzerátu (backend drží binární data v `listing_images`). */
 export const imageUrl = (listingId: Id, img: { id: number }): string =>
   `${API_URL}/listings/${listingId}/images/${img.id}`;
+
+/**
+ * Načte obrázek inzerátu přes fetch s Authorization a vrátí blob URL.
+ * Prohlížeč totiž k `<img src>` nedokáže přidat vlastní hlavičku, takže
+ * dokončené (neveřejné) inzeráty by jinak dostaly od backendu 404.
+ */
+export async function fetchListingImageUrl(
+  listingId: Id, img: { id: number }, retried = false,
+): Promise<string> {
+  const t = loadTokens();
+  const headers: Record<string, string> = {};
+  if (t?.token) headers.Authorization = `Bearer ${t.token}`;
+  const res = await fetch(`${API_URL}/listings/${listingId}/images/${img.id}`, { headers });
+
+  // Stejně jako u ostatních volání: jednou zkusíme obnovit vypršelý token.
+  if (res.status === 401 && !retried) {
+    const next = await refreshTokens();
+    if (next?.token) return fetchListingImageUrl(listingId, img, true);
+  }
+  if (!res.ok) throw new ApiError(res.status, `Obrázek se nepodařilo načíst (${res.status}).`);
+  return URL.createObjectURL(await res.blob());
+}
 
 export const fmtPrice = (n: number): string => `${Number(n).toLocaleString("cs-CZ")} Kč`;
 

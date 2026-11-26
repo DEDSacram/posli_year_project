@@ -6,6 +6,7 @@ import { api, fmtPrice, imageUrl } from "../api";
 import { useAuth } from "../auth";
 import type { Listing, Review, SaleTransaction } from "../types";
 import { Placeholder } from "../components/ListingCard";
+import ListingImage from "../components/ListingImage";
 import { useFav } from "../components/favs";
 import ListingMap from "../components/ListingMap";
 import { InterestBadge, bustInterest, useInterestCount } from "../components/interest";
@@ -265,8 +266,9 @@ export default function ListingDetail(): ReactElement {
                   className="w-full h-full block"
                   title="Zvětšit (šipky / Esc)"
                 >
-                  <img
-                    src={imageUrl(item.id, images[active] ?? images[0])}
+                  <ListingImage
+                    listingId={item.id}
+                    image={images[active] ?? images[0]}
                     alt={item.title}
                     className="w-full h-full object-cover"
                   />
@@ -286,7 +288,12 @@ export default function ListingDetail(): ReactElement {
                       i === active ? "border-navydeep" : "border-transparent hover:border-gray-400"
                     }`}
                   >
-                    <img src={imageUrl(item.id, t)} alt="" className="w-full h-full object-cover" />
+                    <ListingImage
+                      listingId={item.id}
+                      image={t}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -375,7 +382,9 @@ export default function ListingDetail(): ReactElement {
                     WhatsApp
                   </a>
                   <a
-                    href={images.length ? lensSearchByUrl(imageUrl(item.id, images[0])) : lensUploadUrl()}
+                    href={item.status === "active" && images.length
+                      ? lensSearchByUrl(imageUrl(item.id, images[0]))
+                      : lensUploadUrl()}
                     target="_blank"
                     rel="noreferrer"
                     title="Najít podobné přes Google Lens"
@@ -452,8 +461,9 @@ export default function ListingDetail(): ReactElement {
                 ‹
               </button>
             )}
-            <img
-              src={imageUrl(item.id, images[active] ?? images[0])}
+            <ListingImage
+              listingId={item.id}
+              image={images[active] ?? images[0]}
               alt={item.title}
               className="max-h-[85vh] max-w-[90vw] object-contain rounded"
             />
